@@ -1,5 +1,6 @@
 
 using Configurations.Data;
+using Configurations.Extensions;
 using FastEndpoints;
 
 namespace API
@@ -16,18 +17,16 @@ namespace API
             builder.Services.AddAuthorization()
                             .AddEndpointsApiExplorer()
                             .AddFastEndpoints()
-                            .AddSwaggerGen();
+                            .AddSwagger();
 
             var application = builder.Build();
 
             application.CreateDbIfNotExists();
             application.MapDefaultEndpoints();
             
-            if (application.Environment.IsDevelopment())
-            {
-                application.UseSwagger();
-                application.UseSwaggerUI();
-            }
+            application.UseSwagger();
+            application.UseSwaggerUI();
+            
 
             application.UseHttpsRedirection()
                        .UseAuthorization()

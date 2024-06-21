@@ -1,4 +1,4 @@
-﻿using Configurations.Models;
+﻿using Configurations.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -35,12 +35,14 @@ namespace Configurations.Data
                 return;
             }
 
+            var createAt = DateTime.UtcNow;
+
             var products = new Product[]
             {
-                new () { Name = "Product 1", Price = 1.99m },
-                new () { Name = "Product 2", Price = 2.99m },
-                new () { Name = "Product 3", Price = 3.99m },
-                new () { Name = "Product 4", Price = 4.99m },
+                new () { Id = Guid.NewGuid().ToString(), Name = "Product 1", Category = "Category 1", Price = 100.99m, CreateAt = createAt },
+                new () { Id = Guid.NewGuid().ToString(), Name = "Product 2", Category = "Category 1", Price = 20.99m,  CreateAt = createAt },
+                new () { Id = Guid.NewGuid().ToString(), Name = "Product 3", Category = "Category 1", Price = 35.99m,  CreateAt = createAt },
+                new () { Id = Guid.NewGuid().ToString(), Name = "Product 4", Category = "Category 2", Price = 55.99m,  CreateAt = createAt }
             };
 
             context.Products.AddRange(products);

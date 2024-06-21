@@ -1,10 +1,10 @@
 ﻿using Configurations.Data;
-using Configurations.Models;
 using FastEndpoints;
+using Entities = Configurations.Entities;
 
-namespace API.Products.Endpoints
+namespace API.Endpoints
 {
-    public class GetProducts(DataContext dataContext) : EndpointWithoutRequest<IEnumerable<Product>>
+    public class GetProducts(DataContext dataContext) : EndpointWithoutRequest<IEnumerable<Entities.Product>>
     {
         public override void Configure()
         {
